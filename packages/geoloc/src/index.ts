@@ -1,0 +1,1 @@
+export { Geoloc } from "./Geoloc";
