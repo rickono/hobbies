@@ -47,6 +47,10 @@ export class Reader {
     if (this.isSidebar(element) || this.isImage(element)) {
       return;
     }
+    if (this.isBlockquote(element)) {
+      yield element;
+      return;
+    }
     if (this.isBlockElement(element)) {
       const hasBlockChildren = element.children.some((child) =>
         this.isBlockElement(child),
@@ -61,7 +65,17 @@ export class Reader {
     }
   }
 
+  private isBlockquote(element: HTMLElement): boolean {
+    return element.tagName === "BLOCKQUOTE";
+  }
+
   private isSidebar(element: HTMLElement): boolean {
+    if (element.tagName === "DIV" && element.classList.contains("sidebarb")) {
+      const title = element.firstElementChild;
+      const isDishesSidebar =
+        title?.tagName === "H1" && title.text === "Dishes";
+      return !isDishesSidebar;
+    }
     return element.tagName === "DIV" && element.classList.contains("sidebar");
   }
 

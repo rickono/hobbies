@@ -1,5 +1,5 @@
 import { isDefined } from "@rono/utils";
-import { NodeType } from "./parser";
+import { NodeType } from "./reader";
 import { Association, AssociationStrength } from "./types";
 
 const alphaOrSpaceRe = /^\*?[a-zA-Zúîéèâêçñ/\- ]+$/;
@@ -12,7 +12,7 @@ export const isEspeciallyAssociation = (associationText: string): boolean => {
   return especiallyRe.test(associationText);
 };
 
-const exampleRe = /^\*?[a-zA-Z ]+:/;
+const exampleRe = /^\*?[a-zA-Z/ ]+:/;
 const exampleRe2 = /^\*?[a-zA-Z ]+,/;
 export const isExampleAssociation = (associationText: string): boolean => {
   return exampleRe.test(associationText) || exampleRe2.test(associationText);
