@@ -295,6 +295,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@rono/db':
+        specifier: workspace:*
+        version: link:../db
       '@rono/types':
         specifier: workspace:*
         version: link:../types

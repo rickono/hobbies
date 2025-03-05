@@ -1,12 +1,13 @@
+import {
+  Dish,
+  Note,
+  ParsedFlavorBible,
+  ParsedFlavorBibleEntry,
+} from "@rono/types";
 import { HTMLElement } from "node-html-parser";
 import { PeekableIterator } from "./peekable";
 import { Reader } from "./reader";
-import { Dish, Note, ParsedFlavorBible, ParsedFlavorBibleEntry } from "./types";
 import { getAssociation } from "./utils";
-
-const logNode = (node: HTMLElement): void => {
-  console.log(node.tagName, node.classList.values(), node.text);
-};
 
 class Processor {
   private readonly reader: PeekableIterator<HTMLElement>;
@@ -38,7 +39,6 @@ class Processor {
   private processNode(node: HTMLElement): void {
     // If the node is h1.sub1 it is a new entry, and enter 'meta-gathering'
     if (node.tagName === "H1" && node.classList.contains("sub1")) {
-      console.log(node.text);
       const id = node.getAttribute("id") ?? "";
       this.phase = "meta-gathering";
       this.book[id] = {
@@ -70,8 +70,6 @@ class Processor {
       this.phase = "flavor-affinities";
       return;
     }
-    // console.log(this.phase);
-    // logNode(node);
 
     if (this.phase === "meta-gathering") {
       if (!this.isMetaNode(node)) {

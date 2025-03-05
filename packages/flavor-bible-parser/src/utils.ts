@@ -1,6 +1,6 @@
+import { Association, AssociationStrength } from "@rono/types";
 import { isDefined } from "@rono/utils";
 import { NodeType } from "./reader";
-import { Association, AssociationStrength } from "./types";
 
 const alphaOrSpaceRe = /^\*?[a-zA-Zúîéèâêçñ/\- ]+$/;
 export const isSimpleAssociation = (associationText: string): boolean => {
@@ -140,7 +140,6 @@ export const getAssociation = (
       },
     ];
   }
-  console.log(associationText, strong);
   return undefined;
 };
 
@@ -175,7 +174,7 @@ const cleanText = (input: string): string => {
   if (cleaned.startsWith("*")) {
     cleaned = cleaned.slice(1);
   }
-  return cleaned;
+  return cleaned.trim();
 };
 
 export const getSimpleAssociation = (
@@ -274,10 +273,13 @@ export const getExampleAssociation = (
   const entry = associationText.slice(0, entryEnd);
   const tokens = lexEspecially(associationText.slice(entryEnd + 1));
   const strongStr = strong.join("");
+  const isExample = associationText[entryEnd] === ":";
+  const assocs = processTokens(tokens, strongStr);
   return {
     name: cleanText(entry),
     level: getLevel(entry, strongStr),
-    example: processTokens(tokens, strongStr),
+    example: isExample ? assocs : [],
+    narrowers: isExample ? [] : assocs,
   };
 };
 

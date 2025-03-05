@@ -1,0 +1,1 @@
+export { FlavorBibleDb } from "./flavorBible";
