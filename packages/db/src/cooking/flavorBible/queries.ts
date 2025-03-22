@@ -1,3 +1,4 @@
+import { FlavorBibleEntryId } from "@rono/types";
 import sql, { SQLStatement } from "sql-template-strings";
 import { InsertFlavorBibleAssociation, InsertFlavorBibleEntry } from "./types";
 
@@ -49,4 +50,22 @@ export const getClosestEntry = (searchString: string): SQLStatement => sql`
     distance
   LIMIT
     1
+`;
+
+export const getAllEntries = sql`
+  SELECT
+    id,
+    name
+  FROM
+    fb_entry
+`;
+
+export const getEntry = (entry: FlavorBibleEntryId) => sql`
+  SELECT
+    *
+  FROM
+    fb_entry e
+    LEFT JOIN fb_association a ON e.id = a.main_entry
+  WHERE
+    e.id = ${entry}
 `;

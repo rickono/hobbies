@@ -1,4 +1,4 @@
-import { Association, AssociationStrength } from "@rono/types";
+import { AssociationStrength, ParsedAssociation } from "@rono/types";
 import { isDefined } from "@rono/utils";
 import { NodeType } from "./reader";
 
@@ -44,7 +44,7 @@ export const isUppercase = (input: string): boolean => {
 export const getAssociation = (
   associationText: string,
   strong: string[],
-): Association | Association[] | NodeType | undefined => {
+): ParsedAssociation | ParsedAssociation[] | NodeType | undefined => {
   if (isSimpleAssociation(associationText)) {
     return getSimpleAssociation(associationText, strong);
   }
@@ -144,8 +144,8 @@ export const getAssociation = (
 };
 
 export const isAssoc = (
-  maybeAssoc: NodeType | undefined | Association | Association[],
-): maybeAssoc is Association => {
+  maybeAssoc: NodeType | undefined | ParsedAssociation | ParsedAssociation[],
+): maybeAssoc is ParsedAssociation => {
   return (
     isDefined(maybeAssoc) &&
     !(typeof maybeAssoc === "string") &&
@@ -180,7 +180,7 @@ const cleanText = (input: string): string => {
 export const getSimpleAssociation = (
   associationText: string,
   strong: string[],
-): Association => {
+): ParsedAssociation => {
   return {
     name: cleanText(associationText),
     level: getLevel(associationText, strong[0] ?? ""),
@@ -208,9 +208,12 @@ const lexEspecially = (especially: string): string[] => {
   return [token, ...lexEspecially(rest.trim())];
 };
 
-const processTokens = (tokens: string[], strong: string): Association[] => {
-  let currentAssociation: Association | undefined;
-  const associations: Association[] = [];
+const processTokens = (
+  tokens: string[],
+  strong: string,
+): ParsedAssociation[] => {
+  let currentAssociation: ParsedAssociation | undefined;
+  const associations: ParsedAssociation[] = [];
 
   for (const token of tokens) {
     if (token.startsWith("(e.g.,") || token.startsWith("(i.e.,")) {
@@ -246,7 +249,7 @@ const processTokens = (tokens: string[], strong: string): Association[] => {
 export const getEspeciallyAssociation = (
   associationText: string,
   strong: string[],
-): Association | undefined => {
+): ParsedAssociation | undefined => {
   const [entry, especially] = associationText.split(", esp. ");
   if (entry === undefined || especially === undefined) {
     return;
@@ -263,7 +266,7 @@ export const getEspeciallyAssociation = (
 export const getExampleAssociation = (
   associationText: string,
   strong: string[],
-): Association | undefined => {
+): ParsedAssociation | undefined => {
   const entryEnd = Array.from(associationText).findIndex(
     (char) => char === "," || char === ":",
   );
@@ -286,14 +289,14 @@ export const getExampleAssociation = (
 const getEgAssociation = (
   associationText: string,
   strong: string[],
-): Association | undefined => {
+): ParsedAssociation | undefined => {
   const tokens = lexEspecially(associationText);
   return processTokens(tokens, strong.join(""))[0];
 };
 
 const getPeakAssociation = (
   associationText: string,
-): Association | undefined => {
+): ParsedAssociation | undefined => {
   const [entry, peak] = lexEspecially(associationText);
   if (entry === undefined || peak === undefined) {
     return undefined;
@@ -309,7 +312,7 @@ const getPeakAssociation = (
 const getParen = (
   associationText: string,
   strong: string[],
-): Association | undefined => {
+): ParsedAssociation | undefined => {
   // console.log(associationText, strong);
   const [_, entry, note] = associationText.match(parenRe) ?? [];
   if (entry === undefined || note === undefined) {

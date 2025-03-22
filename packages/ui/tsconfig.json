@@ -3,6 +3,6 @@
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src"],
+  "include": ["src", "../../apps/nextapp/src/components/ui/page.tsx", "../../apps/nextapp/src/components/ui/text.tsx"],
   "exclude": ["node_modules", "dist"]
 }

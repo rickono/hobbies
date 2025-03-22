@@ -1,3 +1,5 @@
+import { FlavorBibleEntryId } from "../nominal";
+
 export interface Dish {
   name: string;
   attribution?: string;
@@ -10,10 +12,10 @@ export interface BaseAssociation {
   level: AssociationStrength;
 }
 
-export interface Association extends BaseAssociation {
+export interface ParsedAssociation extends BaseAssociation {
   parenthesis?: string;
-  especially?: Association[];
-  example?: Association[];
+  especially?: ParsedAssociation[];
+  example?: ParsedAssociation[];
   narrowers?: BaseAssociation[];
   peak?: string;
 }
@@ -26,7 +28,7 @@ export interface Note {
 export interface ParsedFlavorBibleEntry {
   id: string;
   name: string;
-  associations: Association[];
+  associations: ParsedAssociation[];
   flavorAffinities: string[][];
   dishes: Dish[];
   meta: Record<string, string>;
@@ -39,4 +41,17 @@ export interface ParsedFlavorBibleEntry {
 
 export interface ParsedFlavorBible {
   [ingredientId: string]: ParsedFlavorBibleEntry;
+}
+
+export interface FlavorBibleAssociation {
+  name: string;
+  strength: AssociationStrength;
+  examples?: string[];
+  narrowers?: string[];
+}
+
+export interface FlavorBibleEntry {
+  id: FlavorBibleEntryId;
+  name: string;
+  associations?: FlavorBibleAssociation[];
 }

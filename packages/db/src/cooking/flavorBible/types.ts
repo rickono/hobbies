@@ -2,24 +2,31 @@ import {
   AssociationStrength,
   FlavorBibleEntryId,
   RequiredKeys,
+  SnakeToCamelCaseKeys,
 } from "@rono/types";
 
-export interface FlavorBibleEntryEntity {
+export interface DbFlavorBibleEntryEntity {
   id: FlavorBibleEntryId;
   name: string;
-  seeAlso?: string;
+  see_also?: string;
   example?: string;
   aka?: string;
 }
 
-export interface FlavorBibleAssociationEntity {
-  mainEntry: FlavorBibleEntryId;
-  associationText: string;
-  associatedEntry: number;
+export type FlavorBibleEntryEntity =
+  SnakeToCamelCaseKeys<DbFlavorBibleEntryEntity>;
+
+export interface DbFlavorBibleAssociationEntity {
+  main_entry: FlavorBibleEntryId;
+  association_text: string;
+  associated_entry: number;
   strength: AssociationStrength;
   narrower: string[];
   example: string[];
 }
+
+export type FlavorBibleAssociationEntity =
+  SnakeToCamelCaseKeys<DbFlavorBibleAssociationEntity>;
 
 export interface FlavorBibleAffinityEntity {
   id: number;

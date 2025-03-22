@@ -1,4 +1,5 @@
-import { DistinctionId, LocationId } from "./nominal";
+import { Location } from "./models/location";
+import { DistinctionId } from "./nominal";
 
 export type Restaurant = {
   id: number;
@@ -56,15 +57,6 @@ export type MichelinDistinction =
 export interface Distinction {
   name: string;
   id: MichelinDistinction & DistinctionId;
-}
-
-export type LocationType = "neighborhood" | "city" | "state" | "country";
-export interface Location {
-  id: LocationId;
-  name: string;
-  type: LocationType;
-  abbr: string | null;
-  parentId?: LocationId;
 }
 
 export interface Currency {
