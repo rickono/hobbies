@@ -1,5 +1,6 @@
 import { Pool, QueryResult, QueryResultRow } from "pg";
 import { SQLStatement } from "sql-template-strings";
+import { Query } from "./queries";
 
 declare global {
   // Ensuring we don't get type errors during hot reloads in development
@@ -29,3 +30,5 @@ export const db = global.dbConnection || new DatabaseConnection();
 if (process.env.NODE_ENV !== "production") {
   global.dbConnection = db;
 }
+
+export const query = new Query(db);

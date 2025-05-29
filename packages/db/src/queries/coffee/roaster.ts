@@ -3,11 +3,10 @@ import sql from "sql-template-strings";
 import { Roaster } from "../../../../types/src/models";
 import { DatabaseConnection } from "../../DatabaseConnection";
 
-export const roaster = {
-  get: (
-    db: DatabaseConnection,
-    id: RoasterId,
-  ): Promise<Roaster | undefined> => {
+export class RoasterDb {
+  public constructor(private readonly db: DatabaseConnection) {}
+
+  public get(id: RoasterId): Promise<Roaster | undefined> {
     const query = sql`
       SELECT
         id,
@@ -18,10 +17,10 @@ export const roaster = {
       WHERE
         id = ${id}
     `;
-    return db.query<Roaster>(query).then((result) => result.rows[0]);
-  },
+    return this.db.query<Roaster>(query).then((result) => result.rows[0]);
+  }
 
-  getAll: (db: DatabaseConnection): Promise<Roaster[]> => {
+  public getAll(): Promise<Roaster[]> {
     const query = sql`
       SELECT
         r.id,
@@ -35,14 +34,13 @@ export const roaster = {
         coffee_roasters r
         LEFT JOIN locations l ON l.id = r.location_id
     `;
-    return db.query<Roaster>(query).then((result) => result.rows);
-  },
+    return this.db.query<Roaster>(query).then((result) => result.rows);
+  }
 
-  insert: (
-    db: DatabaseConnection,
+  public insert(
     name: string,
     locationId: LocationId,
-  ): Promise<RoasterId | undefined> => {
+  ): Promise<RoasterId | undefined> {
     const query = sql`
       INSERT INTO
         coffee_roasters (name, location_id)
@@ -54,8 +52,8 @@ export const roaster = {
       RETURNING
         id
     `;
-    return db
+    return this.db
       .query<{ id: RoasterId }>(query)
       .then((result) => result.rows[0]?.id);
-  },
-};
+  }
+}

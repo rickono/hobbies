@@ -1,6 +1,4 @@
 import { FC, ReactNode } from "react";
-import { Navbar } from "./Navbar";
-import { navigation } from "./constants";
 
 interface Props {
   children: ReactNode;
@@ -14,15 +12,7 @@ export const Layout: FC<Props> = async ({ children }) => {
 
   return (
     <>
-      <div className="min-h-full">
-        <Navbar
-          items={Object.entries(navigation).map(([name, href]) => ({
-            name,
-            href,
-          }))}
-        />
-        {children}
-      </div>
+      <div className="min-h-full">{children}</div>
     </>
   );
 };

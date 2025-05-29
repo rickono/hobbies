@@ -23,7 +23,7 @@ const Cooking: FC = async () => {
   }
 
   return (
-    <Page title="Flavor Bible">
+    <Page title="Flavor Bible" current="Flavor Bible">
       {Object.entries(byAlpha).map(([letter, entries]) => (
         <EntrySection title={letter} entries={entries} key={letter} />
       ))}

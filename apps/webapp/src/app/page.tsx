@@ -23,7 +23,7 @@ export default async function Home() {
   // service.scrape();
 
   return (
-    <Page title="Restaurants">
+    <Page title="Restaurants" current="Restaurants">
       <SignIn />
       <div className="w-full h-full">
         <RestaurantsGrid restaurants={rows} />

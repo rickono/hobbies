@@ -10,8 +10,9 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/16/solid";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { cn } from "../../../lib/utils";
+import { navigation } from "../constants";
 import { NavItem } from "./NavItem";
 
 const user = {
@@ -33,34 +34,21 @@ interface NavItem {
 
 interface Props {
   items: NavItem[];
+  current: keyof typeof navigation | "not-found";
 }
 
-export const Navbar: FC<Props> = ({ items }) => {
-  const [current, setCurrent] = useState("Restaurants");
+export const Navbar: FC<Props> = ({ items, current }) => {
   return (
     <Disclosure as="nav" className="border-b border-gray-200 bg-white">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 justify-between">
           <div className="flex">
-            <div className="flex shrink-0 items-center">
-              <img
-                alt="Your Company"
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                className="block h-8 w-auto lg:hidden"
-              />
-              <img
-                alt="Your Company"
-                src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600"
-                className="hidden h-8 w-auto lg:block"
-              />
-            </div>
             <div className="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
               {items.map((item) => (
                 <NavItem
                   {...item}
                   key={item.name}
                   current={item.name === current}
-                  onNavigate={() => setCurrent(item.name)}
                 />
               ))}
             </div>
