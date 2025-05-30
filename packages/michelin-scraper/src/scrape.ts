@@ -1,6 +1,6 @@
-import { RestaurantsDb } from "@rono/db";
-import { MichelinScraper } from "./MichelinScraper";
+import { RestaurantsDb } from "@rono/db-legacy";
 import { InsertRestaurant } from "../../db/src/restaurant/types";
+import { MichelinScraper } from "./MichelinScraper";
 
 export const scrape = async () => {
   const restaurantsDb = new RestaurantsDb();

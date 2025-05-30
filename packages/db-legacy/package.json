@@ -1,5 +1,5 @@
 {
-  "name": "@rono/db",
+  "name": "@rono/db-legacy",
   "version": "0.0.0",
   "private": true,
   "exports": {

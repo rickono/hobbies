@@ -1,4 +1,4 @@
-import { FlavorBibleDb } from "@rono/db";
+import { FlavorBibleDb } from "@rono/db-legacy";
 import { FlavorBibleEntryId } from "@rono/types";
 import { FC } from "react";
 import { Page } from "../../../../components/ui/page";

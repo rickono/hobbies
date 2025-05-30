@@ -34,7 +34,7 @@
     "@eslint/eslintrc": "^3",
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@rono/db": "workspace:*",
+    "@rono/db-legacy": "workspace:*",
     "@rono/geoloc": "workspace:*",
     "@rono/michelin-scraper": "workspace:*",
     "@rono/types": "workspace:*",

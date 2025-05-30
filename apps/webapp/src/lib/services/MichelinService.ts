@@ -1,4 +1,8 @@
-import { AWARD_TYPE_MICHELIN, LocationsDb, RestaurantsDb } from "@rono/db";
+import {
+  AWARD_TYPE_MICHELIN,
+  LocationsDb,
+  RestaurantsDb,
+} from "@rono/db-legacy";
 import { Geoloc } from "@rono/geoloc";
 import { MichelinScraper } from "@rono/michelin-scraper";
 import {

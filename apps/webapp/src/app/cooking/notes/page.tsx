@@ -1,4 +1,4 @@
-import { FlavorBibleDb } from "@rono/db";
+import { FlavorBibleDb } from "@rono/db-legacy";
 import { FC } from "react";
 
 const Notes: FC = async () => {

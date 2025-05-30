@@ -13,7 +13,7 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@rono/db": "workspace:*",
+    "@rono/db-legacy": "workspace:*",
     "@rono/types": "workspace:*",
     "@rono/utils": "workspace:*",
     "@turbo/gen": "^2.4.0",

@@ -1,6 +1,6 @@
 "use server";
 
-import { query } from "@rono/db";
+import { query } from "@rono/db-legacy";
 
 export type QueryObject = typeof query;
 

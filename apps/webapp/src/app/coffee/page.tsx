@@ -1,4 +1,4 @@
-import { query } from "@rono/db";
+import { query } from "@rono/db-legacy";
 import { Button } from "components/ui/Button";
 import { FormLayout, FormSection } from "components/ui/forms/form-layout";
 import { Link } from "components/ui/Link";

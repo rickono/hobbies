@@ -93,9 +93,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
-      '@rono/db':
+      '@rono/db-legacy':
         specifier: workspace:*
-        version: link:../../packages/db
+        version: link:../../packages/db-legacy
       '@rono/geoloc':
         specifier: workspace:*
         version: link:../../packages/geoloc
@@ -145,7 +145,7 @@ importers:
         specifier: ^5
         version: 5.7.3
 
-  packages/db:
+  packages/db-legacy:
     dependencies:
       dayjs:
         specifier: ^1.11.13
@@ -245,9 +245,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@rono/db':
+      '@rono/db-legacy':
         specifier: workspace:*
-        version: link:../db
+        version: link:../db-legacy
       '@rono/types':
         specifier: workspace:*
         version: link:../types
@@ -305,9 +305,9 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@rono/db':
+      '@rono/db-legacy':
         specifier: workspace:*
-        version: link:../db
+        version: link:../db-legacy
       '@rono/types':
         specifier: workspace:*
         version: link:../types

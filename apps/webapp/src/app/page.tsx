@@ -1,4 +1,4 @@
-import { LocationsDb, RestaurantsDb } from "@rono/db";
+import { LocationsDb, RestaurantsDb } from "@rono/db-legacy";
 import { Geoloc } from "@rono/geoloc";
 import { MichelinScraper } from "@rono/michelin-scraper";
 import { SignIn } from "../components/auth/SignIn";

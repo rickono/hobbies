@@ -1,6 +1,6 @@
 import "dotenv/config"; // Automatically loads .env
 
-import { FlavorBibleDb } from "@rono/db";
+import { FlavorBibleDb } from "@rono/db-legacy";
 import { ParsedFlavorBible } from "@rono/types";
 import { readFileSync } from "fs";
 

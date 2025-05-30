@@ -1,4 +1,4 @@
-import { DatabaseConnection } from "@rono/db";
+import { DatabaseConnection } from "@rono/db-legacy";
 import "dotenv/config";
 
 let conn: DatabaseConnection | null = null;
