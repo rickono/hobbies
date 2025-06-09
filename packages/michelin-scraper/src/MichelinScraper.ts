@@ -67,20 +67,24 @@ export const hitToRestaurant = (hit: Hit): RawRestaurant => {
 };
 
 export class MichelinScraper {
-  private latLng: string;
-  private isState: boolean;
+  private latLng?: string;
+  private isState?: boolean;
+  private locationFilters: [string][] = [];
 
-  public constructor(location: MichelinLocation) {
-    const { latLng, isState } = LOCATIONS[location];
-    this.latLng = latLng;
-    this.isState = isState;
+  public constructor(location?: MichelinLocation) {
+    if (location) {
+      const { latLng, isState, filters } = LOCATIONS[location];
+      this.latLng = latLng;
+      this.isState = isState;
+      this.locationFilters = filters;
+    }
   }
 
   public async fetchRestaurants(page: number): Promise<RawRestaurant[]> {
     const facetFilters = encodeURIComponent(
       JSON.stringify([
-        ["country.cname:united-states"],
-        ["region.slug:new-york-state"],
+        ...this.locationFilters,
+        // ["distinction.slug:3-stars-michelin"],
       ]),
     );
 
@@ -89,7 +93,7 @@ export class MichelinScraper {
         {
           indexName: INDEX_NAME,
           params: `
-            aroundLatLng=${this.latLng}&
+            ${this.latLng ? `aroundLatLng=${this.latLng}` : ""}&
             aroundLatLngViaIP=false&
             aroundRadius=all&
             attributesToRetrieve=_geoloc,booking_url,booking_provider,

@@ -37,11 +37,30 @@ const colDefs: ColDef<Restaurant>[] = [
       return [neighborhoodObj, cityObj, stateObj, countryObj];
     },
     valueFormatter: ({ value }) => {
-      console.log("value", value);
-      const [_, cityObj, stateObj, __] = value;
-      return `${cityObj?.name}, ${stateObj?.abbr}`;
+      const [_, cityObj, stateObj, countryObj] = value;
+      const city: string | undefined = cityObj?.name;
+      const state: string | undefined = stateObj?.abbr || stateObj?.name;
+      const country: string | undefined = countryObj?.name;
+
+      const specific = city ?? state ?? country ?? "";
+      const general = state ?? country ?? "";
+
+      return specific === general || !general
+        ? specific
+        : `${specific}, ${general}`;
     },
     filter: "agTextColumnFilter",
+    filterValueGetter: ({ data }) => {
+      const cityObj = data?.locations?.find((loc) => loc.type === "city");
+      const stateObj = data?.locations?.find((loc) => loc.type === "state");
+      const neighborhoodObj = data?.locations?.find(
+        (loc) => loc.type === "neighborhood",
+      );
+      const countryObj = data?.locations?.find((loc) => loc.type === "country");
+      return [neighborhoodObj, cityObj, stateObj, countryObj]
+        .map((locObj) => [locObj?.name, locObj?.abbr].filter(Boolean).join("|"))
+        .join("|");
+    },
   },
   {
     headerName: "Awards",
@@ -52,6 +71,8 @@ const colDefs: ColDef<Restaurant>[] = [
   {
     headerName: "Website",
     field: "website",
+    onCellDoubleClicked: ({ value }) => window.open(value, "_blank"),
+    cellStyle: { cursor: "pointer", textDecoration: "underline" },
   },
   {
     headerName: "Reserve",
@@ -69,7 +90,7 @@ const getRowId: GetRowIdFunc<Restaurant> = (row): string =>
 
 export const RestaurantsGrid: FC<Props> = ({ restaurants }) => {
   return (
-    <div className="h-100">
+    <div className="h-200">
       <AgGridReact<Restaurant>
         columnDefs={colDefs}
         rowData={restaurants}

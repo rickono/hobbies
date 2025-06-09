@@ -1,8 +1,8 @@
 import { Location } from "./models/location";
-import { DistinctionId } from "./nominal";
+import { CuisineId, DistinctionId, RestaurantId } from "./nominal";
 
 export type Restaurant = {
-  id: number;
+  id: RestaurantId;
   name: string;
   cuisines?: Cuisine[];
   awards?: Award[];
@@ -24,7 +24,7 @@ export type Restaurant = {
 };
 
 export interface Cuisine {
-  id: string;
+  id: CuisineId;
   name: string;
 }
 

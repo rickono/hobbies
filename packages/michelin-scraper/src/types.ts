@@ -31,6 +31,7 @@ export type MichelinLocation = "new york" | "chicago";
 export interface LocationMeta {
   latLng: string;
   isState: boolean;
+  filters: [string][];
 }
 interface HitCuisine {
   code: string;

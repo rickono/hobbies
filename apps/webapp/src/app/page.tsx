@@ -9,7 +9,7 @@ import { RestaurantsGrid } from "./RestaurantsGrid";
 export default async function Home() {
   const restaurantDb = new RestaurantsDb();
   const rows = await restaurantDb.getRestaurants();
-  const scraper = new MichelinScraper("new york");
+  const scraper = new MichelinScraper("chicago");
   const geoloc = new Geoloc(
     "pk.eyJ1Ijoicmlja29ubyIsImEiOiJjbHMwdTJ1MjQwNG4wMmttb3FoMWdlN3UyIn0.WBttgeAdcYSV-2YxREfbxQ",
   );

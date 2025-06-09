@@ -1,0 +1,1 @@
+export { IngredientLink } from "./IngredientLink";

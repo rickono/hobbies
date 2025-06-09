@@ -1,4 +1,6 @@
 import { FC, ReactNode } from "react";
+import { FieldValues, FormProvider, UseFormReturn } from "react-hook-form";
+import { Button } from "../button";
 
 interface FormSection {
   header: string;
@@ -6,8 +8,13 @@ interface FormSection {
   children: ReactNode;
 }
 
-interface Props {
+interface Props<T extends FieldValues> {
   children: ReactNode;
+  onCancel?: () => void;
+  onSubmit: (data: T) => void;
+  okText?: string;
+  cancelText?: string;
+  form: UseFormReturn<T>;
 }
 
 export const FormSection: FC<FormSection> = ({
@@ -29,22 +36,26 @@ export const FormSection: FC<FormSection> = ({
   );
 };
 
-export const FormLayout: FC<Props> = ({ children }) => {
+export const FormLayout = <T extends FieldValues>({
+  children,
+  onSubmit,
+  onCancel,
+  okText = "Save",
+  cancelText = "Cancel",
+  form,
+}: Props<T>) => {
   return (
-    <form>
-      <div className="space-y-12">{children}</div>
+    <FormProvider {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <div className="space-y-12">{children}</div>
 
-      <div className="mt-6 flex items-center justify-end gap-x-6">
-        <button type="button" className="text-sm/6 font-semibold text-gray-900">
-          Cancel
-        </button>
-        <button
-          type="submit"
-          className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Save
-        </button>
-      </div>
-    </form>
+        <div className="mt-6 flex items-center justify-end gap-x-6">
+          <Button variant="secondary" type="button" onClick={onCancel}>
+            {cancelText}
+          </Button>
+          <Button>{okText}</Button>
+        </div>
+      </form>
+    </FormProvider>
   );
 };

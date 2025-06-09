@@ -1,2 +1,1 @@
-export { CascadeSelect } from "./cascade-select";
-export { Select } from "./select";
+export { BaseSelect } from "./select-base";
