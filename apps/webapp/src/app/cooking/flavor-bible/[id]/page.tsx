@@ -18,7 +18,7 @@ const FlavorBibleEntryPage: FC<Props> = async ({ params }) => {
   }
 
   return (
-    <Page title={entry.name}>
+    <Page title={entry.name} current="Cooking">
       <div>
         {entry.associations?.map((association) => (
           <FlavorBibleAssociationRow

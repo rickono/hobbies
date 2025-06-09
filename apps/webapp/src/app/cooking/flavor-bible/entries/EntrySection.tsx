@@ -12,7 +12,7 @@ export const EntrySection: FC<Props> = ({ title, entries }) => {
     <div>
       <Text>{title}</Text>
       {entries.map((entry) => (
-        <a href={`flavor-bible/${entry.id}`}>
+        <a key={entry.id} href={`flavor-bible/${entry.id}`}>
           <Text key={entry.id}>{entry.name}</Text>
         </a>
       ))}

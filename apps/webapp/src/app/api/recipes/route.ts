@@ -16,7 +16,7 @@ const insertRecipePartSchema = z.object({
   ingredients: z.array(insertRecipeIngredientSchema),
 });
 
-export const createRecipeSchema: z.ZodType<InsertRecipe> = z.object({
+const createRecipeSchema: z.ZodType<InsertRecipe> = z.object({
   name: z.string(),
   nativeName: z.string().optional(),
   description: z.string().optional(),

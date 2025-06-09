@@ -33,7 +33,7 @@ export function useQuery<TPath extends ValidQueryPaths>(
     }
 
     fetchData();
-  }, [path, ...args]);
+  }, [path, args]);
 
   return { data, error, isLoading };
 }

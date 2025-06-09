@@ -39,7 +39,7 @@ export class MichelinService {
     console.log(restaurants);
 
     // Insert restaurant entities
-    const restaurantIds = await Promise.all(
+    await Promise.all(
       restaurants.map(async (rawRestaurant) => {
         const result = await this.restaurantDb.insertRestaurant(rawRestaurant);
         if (!isDefined(result)) {

@@ -23,7 +23,7 @@ export const ReviewIngredient = ({
   return (
     <div
       className="flex gap-2"
-      key={`${ingredient.raw}-${partIdx}-${ingredientIdx}`}
+      key={`${ingredient.rawText}-${partIdx}-${ingredientIdx}`}
     >
       <Input
         className="w-16"
@@ -47,7 +47,7 @@ export const ReviewIngredient = ({
           />
         )}
       />
-      <Text className="flex-1">{ingredient.raw}</Text>
+      <Text className="flex-1">{ingredient.rawText}</Text>
     </div>
   );
 };

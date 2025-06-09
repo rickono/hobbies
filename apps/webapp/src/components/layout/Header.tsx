@@ -8,10 +8,8 @@ import { navigation } from "./constants";
 export const Header: FC = () => {
   const path = usePathname();
 
-  console.log(path);
   const headerTitle =
-    Object.entries(navigation).find(([header, p]) => path === p)?.[0] ??
-    "Not found";
+    Object.entries(navigation).find(([_, p]) => path === p)?.[0] ?? "Not found";
   return (
     <header>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

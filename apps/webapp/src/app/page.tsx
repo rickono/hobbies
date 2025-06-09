@@ -14,12 +14,8 @@ export default async function Home() {
     "pk.eyJ1Ijoicmlja29ubyIsImEiOiJjbHMwdTJ1MjQwNG4wMmttb3FoMWdlN3UyIn0.WBttgeAdcYSV-2YxREfbxQ",
   );
   const locationsDb = new LocationsDb();
-  const service = new MichelinService(
-    scraper,
-    restaurantDb,
-    locationsDb,
-    geoloc,
-  );
+  // const service =
+  new MichelinService(scraper, restaurantDb, locationsDb, geoloc);
   // service.scrape();
 
   return (

@@ -8,7 +8,7 @@ import { IngredientLink } from "../components";
 import { AddIngredient } from "./AddIngredient";
 
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 const Ingredients = async ({ params }: Props) => {

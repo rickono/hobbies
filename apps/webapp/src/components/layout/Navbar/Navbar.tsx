@@ -10,6 +10,7 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/16/solid";
+import Image from "next/image";
 import { FC } from "react";
 import { cn } from "../../../lib/utils";
 import { navigation } from "../constants";
@@ -69,7 +70,7 @@ export const Navbar: FC<Props> = ({ items, current }) => {
                 <MenuButton className="relative flex max-w-xs items-center rounded-full bg-white text-sm focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-hidden">
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">Open user menu</span>
-                  <img
+                  <Image
                     alt=""
                     src={user.imageUrl}
                     className="size-8 rounded-full"
@@ -133,7 +134,7 @@ export const Navbar: FC<Props> = ({ items, current }) => {
         <div className="border-t border-gray-200 pt-4 pb-3">
           <div className="flex items-center px-4">
             <div className="shrink-0">
-              <img
+              <Image
                 alt=""
                 src={user.imageUrl}
                 className="size-10 rounded-full"

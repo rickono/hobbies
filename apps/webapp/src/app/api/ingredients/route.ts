@@ -8,7 +8,7 @@ export async function GET() {
   return Response.json({ ingredients });
 }
 
-export const createIngredientSchema: z.ZodType<InsertIngredient> = z.object({
+const createIngredientSchema: z.ZodType<InsertIngredient> = z.object({
   name: z.string(),
   categoryId: z.custom<IngredientId>(isIngredientId),
 });

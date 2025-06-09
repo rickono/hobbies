@@ -1,14 +1,14 @@
 "use client";
 
-import { Ingredient, Source, Unit } from "@rono/types";
+import { BaseIngredient, Source, Unit } from "@rono/types";
 import Fuse from "fuse.js";
 import { createContext, useCallback, useContext, useMemo } from "react";
 
 const IngredientContext = createContext<{
-  ingredients: Ingredient[];
+  ingredients: BaseIngredient[];
   sources: Source[];
   units: Unit[];
-  ingredientSearch: Fuse<Ingredient>;
+  ingredientSearch: Fuse<BaseIngredient>;
   unitSearch: Fuse<Unit>;
 } | null>(null);
 
@@ -75,7 +75,7 @@ export const CookingProvider = ({
   units,
   sources,
 }: {
-  ingredients: Ingredient[];
+  ingredients: BaseIngredient[];
   children: React.ReactNode;
   units: Unit[];
   sources: Source[];
