@@ -1,3 +1,4 @@
+export { Button } from "./button";
 export { Dialog } from "./dialog";
 export * from "./forms";
 export { Pagination } from "./Pagination";

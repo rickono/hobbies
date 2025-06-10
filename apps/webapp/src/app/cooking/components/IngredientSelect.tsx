@@ -1,5 +1,5 @@
 import { IngredientId } from "@rono/types";
-import { Button } from "components/ui/button";
+import { Button } from "components/ui";
 import {
   Command,
   CommandEmpty,
