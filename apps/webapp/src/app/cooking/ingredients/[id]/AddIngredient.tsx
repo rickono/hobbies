@@ -2,8 +2,7 @@
 
 import { IngredientId } from "@rono/types";
 import { IngredientSelect } from "app/cooking/components/IngredientSelect";
-import { Dialog, Text } from "components/ui";
-import { Button } from "components/ui/button";
+import { Button, Dialog, Text } from "components/ui";
 import { Input } from "components/ui/input";
 import { Label } from "components/ui/label";
 import { cn } from "lib/utils";

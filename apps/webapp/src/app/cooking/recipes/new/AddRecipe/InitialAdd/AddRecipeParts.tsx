@@ -1,4 +1,4 @@
-import { Button } from "components/ui/button";
+import { Button } from "components/ui";
 import { FormField } from "components/ui/forms/form-field";
 import { FormSection } from "components/ui/forms/form-layout";
 import { Textarea } from "components/ui/forms/textarea";
